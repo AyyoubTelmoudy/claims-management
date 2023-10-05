@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Modifier un type réclamation</title>
+<div th:replace="supervisorFragments :: head_elements"></div>
+<meta charset="utf-8">
+</head>
+<body class="sb-nav-fixed">
+	<div th:replace="supervisorFragments :: navbar"></div>
+	<div id="layoutSidenav">
+		<div th:replace="supervisorFragments :: layoutSidenav_nav"></div>
+		<div id="layoutSidenav_content">
+			<main>
+			<div  class="card container" style="margin-top: 3%; padding-bottom: 2%;width: 60%;margin-top: 5%;margin-left: 20%;">
+					<form th:action="@{/complainttypes/update}"
+						th:object="${complaintTypeDto}" method="POST" class="row g-3">
+						
+						<div class="form-group">
+							<label>Nom de type</label> 
+							<input type="text" th:field="*{name}" name="name" required min="8" maxlength="30" class="form-control">
+						</div>
+						
+						
+						<div class="box-footer">
+							<button type="submit" class="btn btn-primary">Modifier</button>
+						</div>
+						<input type="hidden" th:field="*{publicId}"/>
+					</form>
+					
+				</div>
+				
+				
+			</main>
+			<div th:replace="supervisorFragments :: footer"></div>
+		</div>
+	</div>
+	<div th:replace="supervisorFragments :: javaScriptLinks"></div>
+</body>
+</html>

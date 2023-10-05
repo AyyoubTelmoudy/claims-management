@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta charset="ISO-8859-1">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <title>Login</title>
+
+    <link href="static/img/favicon.png" rel="icon">
+    <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+    <link href="static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="static/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+</head>
+
+<body onload="loginFormResizing();" onresize="loginFormResizing();">
+
+    <header id="header" class="header-scrolled">
+        <div class="container-fluid">
+
+            <div id="logo" class="pull-left">
+                <h1><a href="/#intro" class="scrollto">KAY-GDR</a></h1>
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="/">Accueil</a></li>
+                    <li><a href="/#about">À propos de nous</a></li>
+                    <li><a href="/#services">OFFRES</a></li>
+                    <li><a href="/login">S'identifier</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" style="margin-bottom: 5%;">
+        <div class="card border-info mb-3" id="loginForm" style=" margin: auto; margin-top: 10%;">
+            <div class="card-header" style="text-align: center;">
+                <h2>KAY-GDR</h2>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" style="text-align: center;">Se connecter</h5>
+                <p class="card-text">
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label for="login" class="form-label">Email</label>
+                            <input type="text" name="email" min="8" maxlength="120" class="form-control" id="login" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Mot de passe</label>
+                            <input type="password" name="password" min="8" maxlength="30" class="form-control" id="password" required>
+                        </div>
+                        <div  class="mb-3">
+                        	<div  th:if="${wrongCredentials}==true" class="invalid-feedback" style="display: block;">
+							   Email ou mot de passe est incorrect !
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" value="Sing in" class="btn btn-success" style="width:60%;"  />
+                        </div>
+                    </form>
+                </p>
+            </div>
+        </div>
+    </main>
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 col-md-6 footer-info">
+                        <h3>KAY-GDR</h3>
+                        <p>KAY TECHNOLOGY est une société informatique de conception, d’édition et de mise en place de logiciels métiers avec comme axe principal les outils de gestion d’entreprise.
+Notre équipe met à votre service un large éventail de compétences dans les domaines suivants: Développement d’applications, intégration d’applications de gestion d’entreprise, mise en place et suivi d’infrastructures informatiques, sites internet, e-commerce et formation.</p>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 footer-info">
+                        <h3>CONTACT</h3>
+                        <p>
+                            <strong>Adresse : </strong>45 RUE ABDELADER MOUFTAKAR ETG 2 APPT 4 20000 CASABLANCA<br>
+                            <strong>Téléphone : </strong>+212698765423<br>
+                            <strong>Email : </strong>kay.technologie.gdr@gmail.com<br>
+                        </p>
+
+                        <div class="social-links">
+                            <a href="http://kaytechnology.com" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="credits">
+                Designed by <a>AYYOUB TELMOUDY</a>
+            </div>
+        </div>
+    </footer>
+    <script src="static/lib/jquery/jquery.min.js"></script>
+    <script src="static/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/lib/easing/easing.min.js"></script>
+    <script src="static/lib/superfish/hoverIntent.js"></script>
+    <script src="static/lib/superfish/superfish.min.js"></script>
+    <script src="static/lib/wow/wow.min.js"></script>
+    <script src="static/lib/waypoints/waypoints.min.js"></script>
+    <script src="static/lib/counterup/counterup.min.js"></script>
+    <script src="static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="static/lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="static/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="static/static/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+    <script src="static/contactform/contactform.js"></script>
+    <script src="static/js/js.js"></script>
+</body>
+
+</html>

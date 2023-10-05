@@ -1,0 +1,19 @@
+////////Administrateur////////
+email     :  kay.technologie.gdr@gmail.com                             
+password  :  12345
+
+////////Superviseur////////
+email     :  superviseur@gmail.com                             
+password  :  12345
+
+
+////////Client////////
+email     :  marsa@gmail.com                             
+password  :  12345
+
+////////Collaborateur////////
+email     :  collaborateur@gmail.com                             
+password  :  12345
+
+
+

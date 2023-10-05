@@ -1,0 +1,54 @@
+@charset "ISO-8859-1";
+.logoClass
+{
+	margin-left:200px;
+    font-size: 25px;
+    margin: 1% 1% 1% 1%;
+    padding: 2px 0 2px 10px;
+    line-height: 1;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    border-left: 4px solid #18d26e;
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-left-color: rgb(24, 210, 110);
+    text-decoration: none;
+    color: white;	
+}
+.logoClass:hover{
+	color: white;	
+}
+a{
+  font-weight:bold;
+  color:#fff;
+  text-decoration:none;
+}
+.header a{
+  display:inline-block;
+  float:right;
+  background:#18d26e;
+  font-size:25px;
+  line-height:20px;
+  padding:3px 6px;
+  margin-top:-5px;
+  border-radius:2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

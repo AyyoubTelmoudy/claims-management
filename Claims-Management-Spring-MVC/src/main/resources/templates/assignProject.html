@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Affecter un nouveau projet</title>
+        <div th:replace="supervisorFragments :: head_elements"></div>
+    </head>
+    <body class="sb-nav-fixed">
+    <div th:replace="supervisorFragments :: navbar"></div>
+    <div id="layoutSidenav">
+        <div th:replace="supervisorFragments :: layoutSidenav_nav"></div>
+        <div id="layoutSidenav_content">
+			<main>	
+				<div  class="card container" style="margin-top: 3%; padding-bottom: 2%;width: 60%;margin-top: 5%;margin-left: 20%;">
+					<form th:action="@{/supervisors/projects/assign}" th:object="${projectAssignmentDto}" method="POST" class="row g-3">
+						<div class="form-group">
+							<label class="form-label">Email du client</label> 
+							<select th:field="*{clientEmail}" required class="form-select">
+								<div th:each="clientDto : ${clientsDto}">
+									<option th:text="${clientDto.email}" th:value="${clientDto.email}"></option>
+								</div>
+							</select>
+					    <div  th:if="${clientsDto.size()}==0" class="invalid-feedback">
+							 Veuillez ajouter ou débloquer un client !
+                        </div>
+						</div>
+						<div class="form-group">
+							<label class="form-label">Email du collaborateur</label> 
+							<select th:field="*{collaboratorEmail}" required class="form-select">
+								<div th:each="collaboratorDto : ${collaboratorsDto}">
+									<option th:text="${collaboratorDto.email}" th:value="${collaboratorDto.email}"></option>
+								</div>
+							</select>
+							<div  th:if="${collaboratorsDto.size()}==0" class="invalid-feedback">
+							      Veuillez ajouter ou débloquer un collaborateur !
+                            </div>
+						</div>
+						<div class="form-group">
+							<label class="form-label">Nom de projet</label>
+							<input class="form-control" type="text" min="8" maxlength="60" th:field="*{projectName}" name="projectName" required>
+						</div>
+						<div class="box-footer">
+							<button type="submit" th:class="${collaboratorsDto.size()}==0 or ${clientsDto.size()}==0 ? 'btn btn-primary disabled' : 'btn btn-primary'">Affecter</button>
+						</div>
+					</form>
+				</div>
+				
+			</main>    
+            <div th:replace="supervisorFragments :: footer"></div>
+        </div>
+    </div>
+    <div th:replace="supervisorFragments :: javaScriptLinks"></div>
+    </body>
+</html>

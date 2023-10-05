@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Répondre</title>
+<div th:replace="collaboratorFragments :: head_elements"></div>
+<link href="/static/css/main.css" rel="stylesheet" />
+<meta charset="utf-8">
+</head>
+<body class="sb-nav-fixed">
+	<div th:replace="collaboratorFragments :: navbar"></div>
+	<div id="layoutSidenav">
+		<div th:replace="collaboratorFragments :: layoutSidenav_nav"></div>
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container">
+<table class="table table-striped table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>Client</th>
+      <th>Numéro de réclamation</th>
+      <th>Type de réclamation</th>
+      <th>Date de réclamation</th>
+      <th>Projet</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td th:text="${complaintDto.clientSocialReason}"></td>
+      <td th:text="${complaintDto.ticketNumber}"></td>
+      <td th:text="${complaintDto.complaintType}"></td>
+      <td th:text="${complaintDto.complaintDate}"></td>
+      <td th:text="${complaintDto.projectName}"></td>
+      <td th:text="${complaintDto.description}"></td>
+    </tr>
+  </tbody>
+</table>
+<div th:if="${attachmentDto}!=null"><img alt="" th:src="${attachmentDto.path}"></div>
+				
+					<div class="col-sm-12 col-xs-12 chat"
+						style="overflow: hidden; outline: none;" tabindex="5001">
+						<div class="chat-body">
+							<div th:each="messageDto: ${messagesDto}">
+							
+								<div th:class="${messageDto.sender}==COLLABORATOR ? 'answer right' : 'answer left' ">
+								
+									<div class="avatar" style="width: 50%;">
+									    <div class="name" th:if="${messageDto.sender}==COLLABORATOR"><h6>Vous</h6></div>
+									    <h6><div class="name" th:if="${messageDto.sender}==CLIENT" th:text="${complaintDto.clientSocialReason}"></div></h6>
+									</div>
+									
+
+
+									<div th:if="${messageDto.isPicture}==false" class="text" th:text="${messageDto.messageContent}"></div>
+									<div th:if="${messageDto.isPicture}==true"><img alt="" th:src="${messageDto.messageContent}"></div>
+
+									<div class="time" th:text="${messageDto.messageDate}"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+							<p id="lastMessage"></p>
+
+					<div th:if="${complaintDto.closingDate}">
+						<h3>Cette réclamation a été clôturée</h3>
+					</div>
+					<br> <br>
+					
+					<form th:unless="${complaintDto.closingDate}"
+						th:action="@{/collaborators/complaints/{publicId}/conversations/messages(publicId=${complaintDto.publicId})}"
+						th:object="${newMessageDto}" class="enter-message" method="POST">
+
+						<textarea style="width: 100%;" min="1" maxlength="200"
+							placeholder="Saisir votre message..."
+							th:field="*{messageContent}" name="message" rows="5" required
+							class="enter-message">
+                       </textarea>
+						<button type="submit" class="btn btn-primary">Envoyer</button>
+					</form>
+				<br>
+				
+					<form th:unless="${complaintDto.closingDate}" enctype="multipart/form-data"
+						th:action="@{/collaborators/complaints/{publicId}/conversations/messages/image(publicId=${complaintDto.publicId})}"
+						th:object="${newMessageDto}" class="enter-message" method="POST">
+						
+						<div class="btn btn-primary" id="annuler" style="display: none;" onclick="annuler();" >Annuler</div>
+						<div id="envoyerImage"  style="display: none;"><button type="submit" class="btn btn-primary">Envoyer</button><br>
+						</div>
+						
+						<label > 
+						<input type=file oninput="pic.src=window.URL.createObjectURL(this.files[0]);imagePreview();" id="image" name="image" style="display: none" required>
+						<img id="pic" />
+						
+						<div class="btn btn-primary" id="importer">Importer une image</div>
+						</label>
+						<br> <br>
+					</form>				
+<br><br>
+
+				</div>
+			</main>
+			<div th:replace="collaboratorFragments :: footer"></div>
+		</div>
+	</div>
+	<div th:replace="collaboratorFragments :: javaScriptLinks"></div>
+</body>
+</html>

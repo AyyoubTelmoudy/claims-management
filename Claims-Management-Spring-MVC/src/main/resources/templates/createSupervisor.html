@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ajouter un superviseur</title>
+        <div th:replace="adminFragments :: head_elements"></div>
+        <meta charset="utf-8">
+    </head>
+    <body class="sb-nav-fixed">
+    <div th:replace="adminFragments :: navbar"></div>
+    <div id="layoutSidenav">
+        <div th:replace="adminFragments :: layoutSidenav_nav"></div>
+        <div id="layoutSidenav_content">
+			<main>
+
+				<div class="card container" style="margin-top: 3%; padding-bottom: 2%; width: 60%; margin-top: 5%; margin-left: 20%;">
+					<form th:action="@{/supervisors/save}" id="createSupervisor" onsubmit=" event.preventDefault();checkSupervisorEmail();" th:object="${supervisorDto}" method="POST" class="row g-3">
+					
+						<div class="form-group">
+							<label class="form-label">Nom</label> 
+							<input type="text" th:field="*{lastName}" name="lastName" required min="5" maxlength="50" class="form-control" >
+						</div>
+						<div class="form-group">
+							<label class="form-label">Prénom</label> 
+							<input type="text" th:field="*{firstName}" name="firstName" required min="5" maxlength="50" class="form-control" >
+						</div>
+						<div class="form-group">
+							<label class="form-label">Email</label> 
+							<input type="email" th:field="*{email}"name="email" id="email" required min="10" maxlength="120" class="form-control" >
+							<div id="emailExists" class="invalid-feedback" style="display: none;">
+								 Email existe déjà !
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="form-label">Téléphone</label> 
+							<input type="tel" th:field="*{phoneNumber}" name="phoneNumber" required min="12" maxlength="30" class="form-control" > 
+						</div>
+						<div class="form-group">
+						<label class="form-label">Etat de compte</label> 
+						 <div class="form-check">
+							  <input type="radio" class="form-check-input" th:field="*{status}" value="ACTIVE" /><label class="form-check-label" >Actif </label>
+						  </div>
+						  <div class="form-check">
+							  <input type="radio" class="form-check-input" th:field="*{status}" value="BLOCKED" /><label class="form-check-label" >Bloqué</label>
+						  </div>
+						</div>	
+				<div class="box-footer">
+					<button type="submit" class="btn btn-primary">Ajouter</button>
+				</div>
+				</form>
+		</div>
+
+			</main>    
+            <div th:replace="adminFragments :: footer"></div>
+        </div>
+    </div>
+    <div th:replace="adminFragments :: javaScriptLinks"></div>
+    </body>
+</html>
